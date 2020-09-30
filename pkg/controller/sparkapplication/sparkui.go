@@ -138,6 +138,9 @@ func createSparkUIService(
 	if err != nil {
 		return nil, fmt.Errorf("invalid Spark UI targetPort: %d", tPort)
 	}
+
+	serviceResourceAnnotations := getServiceResourceAnnotations(app)
+
 	service := &apiv1.Service{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:            getDefaultUIServiceName(app),
@@ -162,6 +165,10 @@ func createSparkUIService(
 			},
 			Type: apiv1.ServiceTypeClusterIP,
 		},
+	}
+
+	if len(serviceResourceAnnotations) != 0 {
+		service.ObjectMeta.Annotations = serviceResourceAnnotations
 	}
 
 	glog.Infof("Creating a service %s for the Spark UI for application %s", service.Name, app.Name)

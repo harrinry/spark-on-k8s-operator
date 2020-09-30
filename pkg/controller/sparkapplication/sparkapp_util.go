@@ -73,6 +73,16 @@ func getResourceLabels(app *v1beta2.SparkApplication) map[string]string {
 	return labels
 }
 
+func getServiceResourceAnnotations(app *v1beta2.SparkApplication) map[string]string {
+	serviceAnnotations := map[string]string{}
+	if app.Spec.SparkUIOptions != nil && app.Spec.SparkUIOptions.ServiceAnnotations != nil {
+		for key, value := range app.Spec.SparkUIOptions.ServiceAnnotations {
+			serviceAnnotations[key] = value
+		}
+	}
+	return serviceAnnotations
+}
+
 func getIngressResourceAnnotations(app *v1beta2.SparkApplication) map[string]string {
 	ingressAnnotations := map[string]string{}
 	if app.Spec.SparkUIOptions != nil && app.Spec.SparkUIOptions.IngressAnnotations != nil {

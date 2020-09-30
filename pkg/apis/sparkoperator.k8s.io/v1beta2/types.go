@@ -306,6 +306,9 @@ type SparkUIConfiguration struct {
 	// TargetPort should be the same as the one defined in spark.ui.port
 	// +optional
 	ServicePort *int32 `json:"servicePort"`
+	// ServiceAnnotations is a map of key,value pairs of annotations that might be added to the service object.
+	// +optional
+	ServiceAnnotations map[string]string `json:"serviceAnnotations,omitempty"`
 	// IngressAnnotations is a map of key,value pairs of annotations that might be added to the ingress object. i.e. specify nginx as ingress.class
 	// +optional
 	IngressAnnotations map[string]string `json:"ingressAnnotations,omitempty"`
