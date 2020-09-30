@@ -151,7 +151,7 @@ func createSparkUIService(
 		Spec: apiv1.ServiceSpec{
 			Ports: []apiv1.ServicePort{
 				{
-					Name: "spark-driver-ui-port",
+					Name: "http-spark-driver-ui-port",
 					Port: port,
 					TargetPort: intstr.IntOrString{
 						Type:   intstr.Int,
